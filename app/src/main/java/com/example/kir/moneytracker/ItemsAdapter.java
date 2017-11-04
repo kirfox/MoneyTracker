@@ -14,7 +14,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
     private List<Item> items = new ArrayList<>();
 
     public ItemsAdapter(){
-        items.add(new Item("Молоко", 35));
+        items.add(new Item("Молоко", 35 ));
         items.add(new Item("Зубная щётка", 1500));
         items.add(new Item("Сало", 105));
         items.add(new Item("Молоко", 35));
@@ -62,15 +62,18 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
         private TextView name;
         private TextView price;
 
+
         public ItemViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.item_name);
             price = itemView.findViewById(R.id.item_price);
+
         }
 
         public void bind (Item item){
-            price.setText(item.getPrice());
+
+            price.setText(String.valueOf(item.getPrice() + " ₽"));
             name.setText(item.getName());
         }
     }
