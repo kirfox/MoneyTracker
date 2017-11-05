@@ -11,10 +11,24 @@ import android.view.ViewGroup;
 
 public class ItemsFragment extends Fragment {
 
-    public static final int TYPE_EXPENSES = 0;
-    public static final int TYPE_INCOME = 0;
+    private static final int TYPE_UNKNOWN = -1;
+    public static final int TYPE_EXPENSE = 0;
+    public static final int TYPE_INCOME = 1;
 
-    public  static final String KEY_TYPE = "TYPE";
+
+    private static final String KEY_TYPE = "TYPE";
+
+    public int type = TYPE_EXPENSE;
+
+    public  static ItemsFragment createItemsFragment(int type){
+        ItemsFragment fragment = new ItemsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(ItemsFragment.KEY_TYPE, type);
+
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -28,5 +42,10 @@ public class ItemsFragment extends Fragment {
         RecyclerView recycler = view.findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setAdapter(new ItemsAdapter());
+
+        type = getArguments().getInt(KEY_TYPE, TYPE_UNKNOWN);
+        if (type == TYPE_UNKNOWN){
+            throw new IllegalStateException("Unknown Fragment Type");
+        }
     }
 }

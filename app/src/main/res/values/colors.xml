@@ -7,4 +7,6 @@
     <color name="background">#84c0c5</color>
     <color name="item_name_bg">#fcc418</color>
     <color name="item_price_bg">#e6ae1e</color>
+    <color name="indicator">#ffff8e</color>
+    <color name="color_tabs">#d1e7e0</color>
 </resources>

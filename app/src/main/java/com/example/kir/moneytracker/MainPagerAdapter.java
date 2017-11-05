@@ -1,6 +1,7 @@
 package com.example.kir.moneytracker;
 
 import android.content.res.Resources;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -25,24 +26,36 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public android.support.v4.app.Fragment getItem(int position) {
+    public Fragment getItem(int position) {
 
         switch (position){
             case PAGE_EXPENSES:
+                return ItemsFragment.createItemsFragment(ItemsFragment.TYPE_EXPENSE);
 
+            case PAGE_INCOMES:
+                return ItemsFragment.createItemsFragment(ItemsFragment.TYPE_INCOME);
+
+            case PAGE_BALANCE:
+                return null;
+
+            default:
+                return null;
 
         }
+
     }
 
     @Override
     public int getCount() {
-        return titles.length;
+        return 2;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
+        return titles[position];
 
 
     }
+
+
 }
