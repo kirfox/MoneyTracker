@@ -1,10 +1,10 @@
 package com.example.kir.moneytracker;
 
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 /**
  * Created by Kir on 05.11.2017.
  */
@@ -36,7 +36,12 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
                 return ItemsFragment.createItemsFragment(ItemsFragment.TYPE_INCOME);
 
             case PAGE_BALANCE:
-                return null;
+                Fragment fragment = new BalanceFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt(BalanceFragment.KEY_TYPE, BalanceFragment.TYPE_BALANCE);
+
+                fragment.setArguments(bundle);
+                return fragment;
 
             default:
                 return null;
@@ -47,7 +52,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return PAGES_COUNT;
     }
 
     @Override

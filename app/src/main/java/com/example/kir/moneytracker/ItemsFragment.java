@@ -18,7 +18,7 @@ public class ItemsFragment extends Fragment {
 
     private static final String KEY_TYPE = "TYPE";
 
-    public int type = TYPE_EXPENSE;
+    private int type = TYPE_EXPENSE;
 
     public  static ItemsFragment createItemsFragment(int type){
         ItemsFragment fragment = new ItemsFragment();
