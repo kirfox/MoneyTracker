@@ -13,32 +13,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
     private List<Item> items = new ArrayList<>();
 
-    public ItemsAdapter(){
-        items.add(new Item("Молоко", 35 ));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
-        items.add(new Item("Молоко", 35));
-        items.add(new Item("Зубная щётка", 1500));
-        items.add(new Item("Сало", 105));
+    public void setItems(List<Item> items){
+        this.items = items;
+        notifyDataSetChanged();
     }
+
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,8 +52,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
         public void bind (Item item){
 
-            price.setText(String.valueOf(item.getPrice() + " ₽"));
-            name.setText(item.getName());
+            price.setText(String.valueOf(item.price + " ₽"));
+            name.setText(item.name);
         }
     }
 }
