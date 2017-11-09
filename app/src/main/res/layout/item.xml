@@ -23,7 +23,7 @@
         android:layout_weight="0"
         android:background="@color/item_price_bg"
         android:textSize="24sp"
-        tools:text="35 Р"
+        tools:text="35 "
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 
