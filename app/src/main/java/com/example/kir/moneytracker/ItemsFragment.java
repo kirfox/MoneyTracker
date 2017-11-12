@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,12 +70,10 @@ public class ItemsFragment extends Fragment {
             loadItems();
     }
 
-    private void loadItems(){
+   private void loadItems(){
         getLoaderManager().initLoader(LOADER_ITEMS, null, new LoaderManager.LoaderCallbacks<List<Item>>() {
-
-
             @Override
-            public android.support.v4.content.Loader<List<Item>> onCreateLoader(int id, Bundle args) {
+            public Loader<List<Item>> onCreateLoader(int id, Bundle args) {
                 return new AsyncTaskLoader<List<Item>>(getContext()) {
                     @Override
                     public List<Item> loadInBackground() {
@@ -90,8 +89,8 @@ public class ItemsFragment extends Fragment {
             }
 
             @Override
-            public void onLoadFinished(android.support.v4.content.Loader<List<Item>> loader, List<Item> items) {
-                if (items ==null){
+            public void onLoadFinished(Loader<List<Item>> loader, List<Item> items) {
+                if (items == null){
                     showError("Произошла ошибка");
                 }else {
                     adapter.setItems(items);
@@ -99,11 +98,11 @@ public class ItemsFragment extends Fragment {
             }
 
             @Override
-            public void onLoaderReset(android.support.v4.content.Loader<List<Item>> loader) {
+            public void onLoaderReset(Loader<List<Item>> loader) {
 
             }
         }).forceLoad();
-    }
+   }
 
 //    private void loadItems(){
 //
