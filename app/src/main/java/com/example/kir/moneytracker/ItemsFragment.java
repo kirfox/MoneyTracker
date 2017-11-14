@@ -1,7 +1,9 @@
 package com.example.kir.moneytracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -18,6 +20,7 @@ import com.example.kir.moneytracker.api.Api;
 import java.io.IOException;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
 import static com.example.kir.moneytracker.Item.TYPE_UNKNOWN;
 
 public class ItemsFragment extends Fragment {
@@ -66,7 +69,16 @@ public class ItemsFragment extends Fragment {
         RecyclerView recycler = view.findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         recycler.setAdapter(adapter);
+        FloatingActionButton fab = view.findViewById(R.id.fab_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddActivity.class);
+                intent.putExtra(AddActivity.EXTRA_TYPE,type);
+                startActivityForResult(intent, AddActivity.RC_ADD_ITEM);
 
+            }
+        });
             loadItems();
     }
 
@@ -104,7 +116,20 @@ public class ItemsFragment extends Fragment {
         }).forceLoad();
    }
 
-//    private void loadItems(){
+    private void showError(String error){
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==AddActivity.RC_ADD_ITEM && resultCode == RESULT_OK){
+            Item item = (Item) data.getSerializableExtra(AddActivity.RESRULT_ITEM);
+            Toast.makeText(getContext(),item.name,Toast.LENGTH_LONG).show();
+        }
+    }
+
+    //    private void loadItems(){
 //
 //        new AsyncTask<Void, Void, List<Item>>(){
 //
@@ -179,7 +204,5 @@ public class ItemsFragment extends Fragment {
 //        }
 //    }
 
-    private void showError(String error){
-        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-    }
+
 }

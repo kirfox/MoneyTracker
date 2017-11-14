@@ -17,6 +17,13 @@
         tools:listitem="@layout/item" />
 
 
-
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab_add"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_add_black_24dp"
+    android:layout_marginRight="18dp"
+    android:layout_marginBottom="23dp"
+    android:layout_gravity="bottom|end"/>
 
 </FrameLayout>
