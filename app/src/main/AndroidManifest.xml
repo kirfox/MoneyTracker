@@ -22,7 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddActivity"/>
+        <activity android:name=".AddActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/add_src_title"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"
+
+            />
     </application>
 
 </manifest>
